@@ -52,7 +52,7 @@ public class Player : MonoBehaviour{
 	/// </summary>
 	void OnTriggerEnter2D(Collider2D other){
 		score++;
-		text.text = "Score: "+score.ToString();
+		text.text = score.ToString();
 	}
 
 	/// <summary>
