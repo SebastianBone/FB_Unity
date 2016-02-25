@@ -30,6 +30,9 @@ public class PipeSpawn : MonoBehaviour {
 	/// </summary>
 	public float lifetime = 6f;
 
+    public float minPosY = -2.1f;
+    public float maxPosY = 0.9f;
+
 	/// <summary>
 	/// Startfunktion wird initial aufgerufen
 	/// </summary>
@@ -45,7 +48,7 @@ public class PipeSpawn : MonoBehaviour {
 		//X-Position auf Gameobjekt Position setzen
 		position.x = transform.position.x;
 		//Y-Position Random in einer Range generieren
-		position.y = Random.Range(-2.1f, 0.9f);
+		position.y = Random.Range(minPosY, maxPosY);
 		//Gameobjekt erzeugen
 		pipeClone = (GameObject)Instantiate(pipe, position, transform.rotation);
 		//deinitialisieren des Gameobjekts

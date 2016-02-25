@@ -757,8 +757,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pipe: {fileID: 162102, guid: 1dc8fdf824d224d10ad544e79f880ac2, type: 2}
-  spawntime: 3
+  spawntime: 2
   lifetime: 5
+  minPosY: -2.1
+  maxPosY: 0.9
 --- !u!4 &1948390753
 Transform:
   m_ObjectHideFlags: 0
