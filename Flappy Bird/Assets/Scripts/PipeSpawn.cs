@@ -1,49 +1,26 @@
 ﻿using UnityEngine;
-
-/// <summary>
-/// Klasse für die Generierung von Hindernissen
-/// </summary>
+// Klasse für die Generierung von Hindernissen
 public class PipeSpawn : MonoBehaviour {
-
-	/// <summary>
-	/// Prefab für die Hindernisse
-	/// </summary>
+	// Prefab für die Hindernisse
 	public GameObject pipe;
-
-	/// <summary>
-	/// Geklonte Instanz des Prefabs
-	/// </summary>
+	// Instanz des Prefabs
 	private GameObject pipeClone;
-
-	/// <summary>
-	/// Position der Hindernisse
-	/// </summary>
+	// Position der Hindernisse
 	private Vector2 position;
-
-	/// <summary>
-	/// Intervall für die Generierung
-	/// </summary>
+	// Intervall für die Generierung
 	public float spawntime = 2f;
-
-	/// <summary>
-	/// Sekunden bis zur Deinitialisierung
-	/// </summary>
+	// Sekunden bis zur Deinitialisierung
 	public float lifetime = 6f;
-
+    // Minimale Position in Y-Richtung
     public float minPosY = -2.1f;
+    // Maximale Position in Y-Richtung
     public float maxPosY = 0.9f;
-
-	/// <summary>
-	/// Startfunktion wird initial aufgerufen
-	/// </summary>
+	// Startfunktion wird initial aufgerufen
 	void Start() {
+        // Intervall Aufruf der spawn-Methode
 		InvokeRepeating("spawn",spawntime,spawntime);
 	}
-
-
-	/// <summary>
-	/// Funktion für die Generierung der Prefab-Klone
-	/// </summary>
+	// Funktion für die Generierung der Prefab-Klone
 	void spawn(){
 		//X-Position auf Gameobjekt Position setzen
 		position.x = transform.position.x;
@@ -54,10 +31,7 @@ public class PipeSpawn : MonoBehaviour {
 		//deinitialisieren des Gameobjekts
 		destroy();
 	}
-
-	/// <summary>
-	/// Funktion zum deinitialisieren der Gameobjekte
-	/// </summary>
+	// Funktion zum deinitialisieren der Gameobjekte
 	void destroy(){
 		//Klon nach x-Sekunden zerstören
 		Destroy(pipeClone,lifetime);

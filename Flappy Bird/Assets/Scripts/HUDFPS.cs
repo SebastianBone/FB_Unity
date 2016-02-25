@@ -1,40 +1,45 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+// Klasse für die Darstellung der Frames pro Sekunde
 public class HUDFPS : MonoBehaviour{
-   
-
-    public float frequency = 0.5F; // The update frequency of the fps
-    public int nbDecimal = 1; // How many decimal do you want to display
-
-    private float accum = 0f; // FPS accumulated over the interval
-    private int frames = 0; // Frames drawn over the interval
-    private Text text; // The fps formatted into a string.
-
+    // Interval der Aktualisierung der Darstellung
+    public float interval = 0.5F; 
+    // Dezimalstellen nach dem Komma
+    public int decimalValues = 1; 
+    // Timer
+    private float timer = 0f; 
+    // Gezeichnete Frames pro interval
+    private int frames = 0; 
+    // Text für die Darstellung im User Interface
+    private Text text; 
+    // Initiale Methode bei Start
     void Start(){
+        // Verweis auf UI Komponente
         text = GameObject.Find("FPS").GetComponent<Text>();
+        // Sequentieller Aufruf der Methode ohne den Spielfluss zu blockieren
         StartCoroutine(FPS());
     }
-
+    // Update pro Frame
     void Update(){
-        accum += Time.timeScale / Time.deltaTime;
-        ++frames;
+        // Vergangene Zeit pro Frame
+        timer += Time.timeScale / Time.deltaTime;
+        // Frameanzahl erhöhen
+        frames++;
     }
-
+    // Sequentielle Methode
     IEnumerator FPS(){
-       
-        // Infinite loop executed every "frenquency" secondes.
+        // Endlosschleife
         while (true){
-           
-            // Update the FPS
-            float fps = accum / frames;
-            text.text = fps.ToString("f" + Mathf.Clamp(nbDecimal, 0, 10));
-       
-            accum = 0.0F;
+            // Frames pro Sekunde errechnen
+            float fps = timer / frames;
+            // Übertragung an den Text und eingrenzen der Darstellung
+            text.text = fps.ToString("f" + Mathf.Clamp(decimalValues, 0, 10));
+            // Werte reset
+            timer = 0.0F;
             frames = 0;
-
-            yield return new WaitForSeconds(frequency);
+            // return interval
+            yield return new WaitForSeconds(interval);
         }
     }
 }
